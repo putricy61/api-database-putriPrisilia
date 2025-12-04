@@ -6,4 +6,5 @@ const router = express.Router()
 router.get('/',userControl.getAllBooks)
 router.get('/:code', userControl.getBookByCode)
 router.post('/',userControl.addBook)
+router.delete('/:code', userControl.delBook)
 module.exports = router

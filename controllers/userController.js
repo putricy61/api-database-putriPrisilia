@@ -68,7 +68,20 @@ const addBook = async(req,res)=>{
     
 }
 
+const delBook = async(req,res)=>{
+    try {
+        const result = await userModel.delBook(req.params.code)
+        if(result==1){
+            res.status(200).json({msg: "Delete success"})
+        }
+        else{
+            res.status(400).json({msg: "Failed"})
+        }
+
+    } catch (error) {
+        res.status(400).json({msg:error})
+    }
+}
 
 
-
-module.exports = {getAllBooks, getBookByCode, addBook}
+module.exports = {getAllBooks, getBookByCode, addBook, delBook}
