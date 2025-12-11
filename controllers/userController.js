@@ -64,8 +64,6 @@ const addBook = async(req,res)=>{
     else{
         res.status(400).json({msg:msg})
     }
-    
-    
 }
 
 const delBook = async(req,res)=>{
@@ -83,5 +81,20 @@ const delBook = async(req,res)=>{
     }
 }
 
+const updateBook = async(req,res)=>{
+    const {kode, judul, pengarang, penerbit} = req.body
+    try {
+        const affected = await userModel.updateBook(req.params.code, req.body);
+        if (affected == 1){
+            res.status(200).json({msg: "Update Success"})
+        }
+        else{
+            res.status(400).json({msg: "Update Failed"})
+        }
+    } catch (error) {
+        res.status(400).json({msg: error})
+    }
+}
 
-module.exports = {getAllBooks, getBookByCode, addBook, delBook}
+
+module.exports = {getAllBooks, getBookByCode, addBook, delBook, updateBook}
