@@ -1,4 +1,6 @@
 const express = require('express')
+const logger = require('./middlewares/logger')
+const auth = require('./middlewares/userAuth')
 const dotenv = require('dotenv')
 const bodyParser = require('body-parser')
 const userRoute = require('./routers/userRoute')
@@ -7,6 +9,8 @@ dotenv.config()
 const app = express()
 
 app.use(bodyParser.json())
+app.use(logger)
+app.use(auth)
 app.use('/api/books',userRoute)
 
 const PORT = process.env.PORT
